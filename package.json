@@ -1,0 +1,13 @@
+{
+  "name": "capycake",
+  "version": "1.0.0",
+  "description": "A cute capybara baking game played with your hands in front of the webcam (MediaPipe Hand Landmarker). Bianco's Labs.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "serve": "node tests/dev-server.mjs 8080"
+  },
+  "author": "Bianco's Labs",
+  "license": "GPL-3.0-or-later"
+}

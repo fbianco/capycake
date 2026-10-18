@@ -1,0 +1,136 @@
+/* CapyCake - Bianco's Labs */
+
+/* Fredoka font (SIL Open Font License, fonts/OFL.txt), bundled so the game works offline */
+@font-face {
+  font-family: "Fredoka";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/fredoka-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fredoka";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/fredoka-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fredoka";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/fredoka-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fredoka";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/fredoka-latin-700-normal.woff2") format("woff2");
+}
+:root {
+  --bg: #ffd9e6;
+  --ink: #5b3a3a;
+  --pink: #ff5fa2;
+  --font: "Fredoka", "Comic Sans MS", "Trebuchet MS", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, #ffeef5, #f7bfd3);
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+#stage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#game {
+  display: block;
+  outline: none;
+  cursor: none;
+  touch-action: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(91, 58, 58, 0.25);
+}
+
+/* the camera picture is drawn inside the game canvas */
+#cam {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#boot {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 217, 230, 0.92);
+  z-index: 10;
+}
+
+#boot.hidden { display: none; }
+
+.boot-card {
+  max-width: 640px;
+  margin: 16px;
+  padding: 28px 34px;
+  background: #fff;
+  border: 4px solid var(--ink);
+  border-radius: 28px;
+  box-shadow: 0 8px 0 rgba(91, 58, 58, 0.2);
+  text-align: center;
+}
+
+.boot-card h1 {
+  margin: 0 0 8px;
+  font-size: 64px;
+  font-weight: 700;
+  color: #ff9a3d;
+  -webkit-text-stroke: 2px var(--ink);
+}
+
+.boot-card h1 span { color: var(--pink); }
+
+.boot-card p { font-size: 18px; line-height: 1.45; margin: 10px 0; }
+
+.boot-card ul {
+  text-align: left;
+  font-size: 17px;
+  line-height: 1.6;
+  background: #fff4f8;
+  border-radius: 16px;
+  padding: 12px 18px 12px 34px;
+}
+
+#boot-btn {
+  margin: 14px 0 6px;
+  padding: 16px 40px;
+  font: 700 26px var(--font);
+  color: #fff;
+  background: var(--pink);
+  border: 4px solid var(--ink);
+  border-radius: 40px;
+  box-shadow: 0 6px 0 var(--ink);
+  cursor: pointer;
+}
+
+#boot-btn:hover { transform: translateY(-2px); }
+#boot-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--ink); }
+
+.small { font-size: 14px !important; opacity: 0.8; }
+.credit { font-weight: 600; color: var(--pink); }

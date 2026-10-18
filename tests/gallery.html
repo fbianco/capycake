@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CapyCake - sprite gallery</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>html, body { overflow: auto; height: auto; } canvas { display: block; margin: 10px auto; background: #fff; border-radius: 12px; }</style>
+</head>
+<body>
+  <canvas id="c" width="1280" height="1000"></canvas>
+  <script type="module">
+    import { drawItem, drawCapy, drawPaw, drawTin, drawMoveIcon, drawBowlBack, drawBowlContents, drawBowlFront } from '../src/render/art.js';
+    import { INGREDIENTS, DISTRACTORS } from '../src/data/recipes.js';
+    import { HATS } from '../src/data/outfits.js';
+    await Promise.all(['500', '600', '700'].map((w) => document.fonts.load(`${w} 20px Fredoka`)));
+    const g = document.getElementById('c').getContext('2d');
+    g.font = '600 14px Fredoka';
+    g.textAlign = 'center';
+    const kinds = [...Object.keys(INGREDIENTS), ...Object.keys(DISTRACTORS)];
+    kinds.forEach((k, i) => {
+      const x = 50 + (i % 17) * 74;
+      const y = 50 + Math.floor(i / 17) * 90;
+      drawItem(g, k, x, y, 1);
+      g.fillStyle = '#5b3a3a';
+      g.fillText(k, x, y + 48);
+    });
+    const moods = ['idle', 'happy', 'oops', 'wow', 'nom', 'spicy'];
+    moods.forEach((m, i) => drawCapy(g, 110 + i * 210, 330, 0.7, { hat: HATS[i].id, mood: m, t: 1 }));
+    drawCapy(g, 110, 620, 0.7, { hat: 'crown', mood: 'idle', t: 1, orange: true });
+    drawCapy(g, 320, 620, 0.7, { hat: 'yuzu', mood: 'happy', t: 1, arms: true, wave: 1 });
+    drawPaw(g, 470, 560, false);
+    drawPaw(g, 540, 560, true);
+    const tin = (type, baked, frost, extra = {}) => ({ type, filled: 1, baked, frost, sprinkles: [], toppings: [], batter: '#fbf1dc', ...extra });
+    drawTin(g, 700, 600, tin('cupcake', null, 0));
+    drawTin(g, 940, 600, tin('cupcake', 'perfect', 1, { toppings: ['cherry'] }));
+    drawTin(g, 1160, 600, tin('cookie', 'perfect', 0));
+    drawTin(g, 700, 800, tin('cake', null, 0));
+    drawTin(g, 940, 820, tin('cake', 'perfect', 1, { toppings: ['strawberry', 'strawberry'] }), '#ffd6e4');
+    drawTin(g, 1160, 820, tin('cake', 'burnt', 0));
+    ['crack', 'whisk', 'stir', 'pour', 'bake', 'frost', 'sprinkle', 'grab'].forEach((m, i) => drawMoveIcon(g, m, 60 + i * 70, 900, 1, 0.3));
+    drawBowlBack(g, 380, 790);
+    drawBowlContents(g, 380, 790, ['flour', 'sugar', 'egg'], 0.2, '#fbe7a8', 1);
+    drawBowlFront(g, 380, 790);
+  </script>
+</body>
+</html>
